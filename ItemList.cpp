@@ -3,3 +3,13 @@
 //
 
 #include "ItemList.h"
+using namespace std;
+
+string ItemList::ToString()
+{
+	string response;
+	for (Item i : items){
+
+	}
+	return response;
+}

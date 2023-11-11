@@ -12,3 +12,14 @@ Beverage::Beverage(string n, float p, int c, int v, float a)
 	abv = a;
 	volume = v;
 }
+
+string Beverage::ToString()
+{
+	string additions = "\t(" + to_string(volume) + "ml";
+	if (abv > 0){
+		additions += ",\t" + to_string(abv) + "%";
+	}
+	additions += ")";
+
+	return Item::ToString() + additions;
+}

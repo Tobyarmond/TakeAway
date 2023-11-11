@@ -14,6 +14,8 @@ public:
 	int volume;
 
 	Beverage(string n, float p, int c, int v, float a);
+
+	string ToString() override;
 };
 
 

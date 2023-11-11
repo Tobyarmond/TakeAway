@@ -3,8 +3,14 @@
 //
 
 #include "Item.h"
+using namespace std;
 
 Item::Item()
 {
 
+}
+
+string Item::ToString()
+{
+	return name + ":\t" + "£" + to_string(price) +  ",\t" + to_string(calories) + "cal";
 }

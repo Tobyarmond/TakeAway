@@ -13,4 +13,20 @@ Appetiser::Appetiser(string n, float p, int c, bool share, bool twoFor)
 	twoForOne = twoFor;
 }
 
+// TODO test this with no shareable and no 2-4-1
+string Appetiser::ToString()
+{
+	string additions;
+	if (shareable){
+		additions += "\t (Shareable)";
+	}
+	if (twoForOne){
+		additions += "\t (2-4-1)";
+	}
+	return Item::ToString() + additions;
+}
+
+
+
+
 

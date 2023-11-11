@@ -14,6 +14,8 @@ public:
 	bool twoForOne;
 
 	Appetiser(string n, float p, int c, bool share, bool twoFor);
+
+	string ToString() override;
 };
 
 

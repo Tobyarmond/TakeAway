@@ -18,6 +18,8 @@ public:
 	Item(string n, float p, int c);
 
 	Item();
+
+	virtual string ToString();
 };
 
 

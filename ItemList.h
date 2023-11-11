@@ -17,7 +17,7 @@ class ItemList
 public:
 	vector<Item> items;
 
-	string ToString();
+	virtual string ToString();
 
 
 };
