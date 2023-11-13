@@ -3,12 +3,14 @@
 //
 #include "Menu.h"
 #include <fstream>
+#include <vector>
 #include "ItemList.h"
+#include "Item.h"
 #include "Appetiser.h"
 #include "MainCourse.h"
 #include "Beverage.h"
 
-Menu::Menu(const string& filePath)
+Menu::Menu(string filePath)
 {
 	vector<string> lines;
 	ifstream reader(filePath);
@@ -21,23 +23,30 @@ Menu::Menu(const string& filePath)
 	while (! reader.eof()){
 		string line;
 		getline(reader,line,'\n');
-		lines.push_back(line);
+		// THIS WAS THE CAUSE OF THE BUG THE EMPTY LINE!!!!!!
+		if (!empty(line)){
+			lines.push_back(line);
+		}
 	}
 	reader.close();
 
 	//Loop over all lines in lines vector and create corresponding objects
 	// foreach string s in lines
 	for(string s: lines){
-		char course = s[0];
 		// Split the line into separate strings for each variable
 		vector<string> line = Split(s, ',');
+		string course;
+		// TODO not sure if this is required
+		if (!line.empty()){
+			course = line[0];
+		}
 		float price =  stof(line[2]);
 		int calories = stoi(line[3]);
 		// TODO could possibly change this to a pointer as information is already a string
 		string name = line[1];
 
 		// If the course is an appetiser
-		if (course == 'a'){
+		if (course == "a"){
 			bool shareable = false;
 			bool twoForOne = false;
 			if (line[3] == "y"){
@@ -49,11 +58,11 @@ Menu::Menu(const string& filePath)
 			items.push_back(Appetiser(name,price,calories,shareable,twoForOne));
 		}
 		// If the course is a main
-		else if (course == 'm'){
+		else if (course == "m"){
 			items.push_back(MainCourse(name,price,calories));
 		}
 		// If the course is a beverage
-		else if (course == 'b'){
+		else if (course == "b"){
 			int volume = stoi(line[6]);
 			float abv = stof(line[7]);
 			items.push_back(Beverage(name,price,calories,volume,abv));
@@ -82,5 +91,8 @@ vector<string> Menu::Split(string str, char separator)
 	}
 	return storage;
 }
+
+
+
 
 

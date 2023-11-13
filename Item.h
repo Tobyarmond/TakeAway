@@ -10,14 +10,10 @@ using namespace std;
 class Item
 {
 public:
-	int calories;
+	int calories{};
 	string name;
-	float price;
+	float price{};
 
-	// FIXME Don't think I need this constructor
-	Item(string n, float p, int c);
-
-	Item();
 
 	virtual string ToString();
 };

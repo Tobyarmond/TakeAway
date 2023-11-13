@@ -3,7 +3,10 @@
 //
 
 #include "ItemList.h"
+#include <vector>
 using namespace std;
+
+
 
 string ItemList::ToString()
 {
@@ -13,3 +16,4 @@ string ItemList::ToString()
 	}
 	return response;
 }
+

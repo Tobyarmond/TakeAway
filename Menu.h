@@ -10,10 +10,11 @@
 using namespace std;
 
 
-class Menu : ItemList
+class Menu : public ItemList
 {
 public:
-	Menu(const string& filePath);
+	Menu(string filePath);
+
 
 private:
 	vector<string> Split (string str, char seperator);

@@ -16,6 +16,10 @@ Good luck!
 #include "Menu.h"
 #include "Order.h"
 #include "Item.h"
+#include "ItemList.h"
+#include "Appetiser.h"
+#include "MainCourse.h"
+#include "Beverage.h"
 
 #include <iostream>
 #include <vector>
@@ -25,8 +29,25 @@ using namespace std;
 
 int main()
 {
+
+	/*
+	Appetiser a = Appetiser("aardvark", 32.0, 255, false, false);
+	MainCourse mc = MainCourse("Quavers", 16.5, 500);
+	Beverage b = Beverage("Beer", 5.2, 200, 568, 4.0);
+	Menu m = Menu();
+	m.items.push_back(a);
+	m.items.push_back(mc);
+	m.items.push_back(b);
+
+	*/
+
 	Menu menu = Menu("menu.csv");
-	//for (Item i : menu.items)
+	for (Item i : menu.items){
+		cout << i.name << endl;
+	}
+	//for (auto i : menu.items){
+	//	cout << i.ToString();
+	//}
 
 
 	/*
