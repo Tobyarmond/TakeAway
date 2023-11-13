@@ -4,9 +4,6 @@
 
 #include "MainCourse.h"
 
-MainCourse::MainCourse(string n, float p, int c)
+MainCourse::MainCourse(string n, float p, int c) : Item(n,p,c)
 {
-	name = n;
-	price = p;
-	calories = c;
 }

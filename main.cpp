@@ -24,32 +24,38 @@ Good luck!
 #include <iostream>
 #include <vector>
 #include <cstring>
+#include <typeinfo>
 
 using namespace std;
 
+// TODO
+// Fix decimal places with price float
+// Fix rounding error with string to float conversion
+// Fix ToString of child objects not being called.
+// This is because the things stored in the vector become Item rather than the course they were instantiated as.
+// List has been used instead but this will cause problems when selecting the option from the menu instead items will have to be an array
+
+
 int main()
 {
-
-	/*
-	Appetiser a = Appetiser("aardvark", 32.0, 255, false, false);
+	Menu menu = Menu("menu.csv");
+	Appetiser a = Appetiser("aardvark", 32.0, 255, true, true);
 	MainCourse mc = MainCourse("Quavers", 16.5, 500);
 	Beverage b = Beverage("Beer", 5.2, 200, 568, 4.0);
-	Menu m = Menu();
-	m.items.push_back(a);
-	m.items.push_back(mc);
-	m.items.push_back(b);
 
-	*/
+	//cout << a.ToString() << endl;
+	//cout << mc.ToString() << endl;
+	//cout << b.ToString() << endl;
 
-	Menu menu = Menu("menu.csv");
-	for (Item i : menu.items){
-		cout << i.name << endl;
+
+	//cout << typeid(menu.items).name() << endl;
+	for (auto i : menu.items){
+		cout << typeid(*i).name() << endl;
+		cout << i->ToString() << endl;
 	}
-	//for (auto i : menu.items){
-	//	cout << i.ToString();
-	//}
 
 
+	// Assignment driver code
 	/*
 	string userCommand;
 	vector <string> parameters;

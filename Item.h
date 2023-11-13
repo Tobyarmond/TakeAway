@@ -14,6 +14,7 @@ public:
 	string name;
 	float price{};
 
+	Item(string n, float p, int c);
 
 	virtual string ToString();
 };

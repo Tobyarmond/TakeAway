@@ -55,17 +55,21 @@ Menu::Menu(string filePath)
 			if (line[4] == "y"){
 				twoForOne = true;
 			}
-			items.push_back(Appetiser(name,price,calories,shareable,twoForOne));
+			Item* ap = new Appetiser(name,price,calories,shareable,twoForOne);
+			items.push_back(ap);
+
 		}
 		// If the course is a main
 		else if (course == "m"){
-			items.push_back(MainCourse(name,price,calories));
+			Item* mp = new MainCourse(name,price,calories);
+			items.push_back(mp);
 		}
 		// If the course is a beverage
 		else if (course == "b"){
 			int volume = stoi(line[6]);
 			float abv = stof(line[7]);
-			items.push_back(Beverage(name,price,calories,volume,abv));
+			Item* bp = new Beverage(name,price,calories,volume,abv);
+			items.push_back(bp);
 		}
 	}
 }

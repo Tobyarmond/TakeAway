@@ -4,11 +4,8 @@
 
 #include "Appetiser.h"
 
-Appetiser::Appetiser(string n, float p, int c, bool share, bool twoFor)
+Appetiser::Appetiser(string n, float p, int c, bool share, bool twoFor) : Item(n,p, c)
 {
-	name = n;
-	price = p;
-	calories = c;
 	shareable = share;
 	twoForOne = twoFor;
 }

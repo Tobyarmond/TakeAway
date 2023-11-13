@@ -4,11 +4,8 @@
 
 #include "Beverage.h"
 
-Beverage::Beverage(string n, float p, int c, int v, float a)
+Beverage::Beverage(string n, float p, int c, int v, float a) : Item(n,p,c)
 {
-	name = n;
-	price = p;
-	calories = c;
 	abv = a;
 	volume = v;
 }
