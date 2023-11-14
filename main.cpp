@@ -25,6 +25,7 @@ Good luck!
 #include <vector>
 #include <cstring>
 #include <typeinfo>
+#include <iomanip>
 
 using namespace std;
 
@@ -41,6 +42,7 @@ using namespace std;
 
 int main()
 {
+	cout << setprecision(4);
 	Menu menu = Menu("menu.csv");
 	Appetiser a = Appetiser("aardvark", 32.0, 255, true, true);
 	MainCourse mc = MainCourse("Quavers", 16.5, 500);
@@ -50,7 +52,7 @@ int main()
 	//cout << mc.ToString() << endl;
 	//cout << b.ToString() << endl;
 
-	cout << menu.ToString();
+	cout << menu.ToString() << setprecision(4);
 
 	//cout << typeid(menu.items).name() << endl;
 	//for (auto i : menu.items){
