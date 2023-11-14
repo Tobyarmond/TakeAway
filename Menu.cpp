@@ -97,18 +97,48 @@ vector<string> Menu::Split(string str, char separator)
 	return storage;
 }
 
-// TODO need to add course separation functionality to this
+// TODO Should change this to create the sorting in the instantiation of menu now I have an id attribute
 string Menu::ToString()
 {
 	int i = 1;
+	vector<Item*> starters;
+	vector<Item*> mains;
+	vector<Item*> drinks;
+	string separator = "----------";
 	string response = "";
+
+
 	// if menu is not empty
 	if (!items.empty()){
 		for (Item* it : items){
-			response += to_string(i) + ".";
-			response += it->ToString() + "\n";
+			if(it->getID() == 1){
+				starters.push_back(it);
+			}
+			else if(it->getID() == 2){
+				mains.push_back(it);
+			}
+			else if(it->getID() == 3){
+				drinks.push_back(it);
+			}
+		}
+		response += separator + "Appetisers" + separator + "\n";
+		for(Item* ap : starters){
+			response += to_string(i) + "." + ap->ToString() +"\n";
 			i++;
 		}
+		response += separator + "Main Dishes" + separator + "\n";
+		for(Item* mc : mains){
+			response += to_string(i) + "." + mc->ToString() + "\n";
+			i++;
+		}
+		response += separator + "Beverages" + separator + "\n";
+		for(Item* dr : drinks){
+			response += to_string(i) + "." + dr->ToString() + "\n";
+			i++;
+		}
+	}
+	else{
+		response = "The menu was empty";
 	}
 	return response;
 }

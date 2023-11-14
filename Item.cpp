@@ -11,6 +11,7 @@ Item::Item(const string &n, float p, int c){
 	name = n;
 	price = p;
 	calories = c;
+	id = 0;
 }
 
 string Item::ToString()
@@ -25,9 +26,14 @@ string Item::getName()
 }
 int Item::getCalories()
 {
-	return 0;
+	return calories;
 }
 float Item::getPrice()
 {
-	return 0;
+	return price;
+}
+
+int Item::getID()
+{
+	return id;
 }

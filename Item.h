@@ -11,14 +11,20 @@ using namespace std;
 class Item
 {
 public:
+
 	string getName();
 	int getCalories();
 	float getPrice();
+
 	virtual string ToString();
+
+	virtual  int getID();
+
 protected:
-	int calories{};
+	int calories;
 	string name;
-	float price{};
+	float price;
+	int id;
 
 	Item(const string &n, float p, int c);
 

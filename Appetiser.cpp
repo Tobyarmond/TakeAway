@@ -8,6 +8,7 @@ Appetiser::Appetiser(string n, float p, int c, bool share, bool twoFor) : Item(n
 {
 	shareable = share;
 	twoForOne = twoFor;
+	id = 1;
 }
 
 // TODO test this with no shareable and no 2-4-1

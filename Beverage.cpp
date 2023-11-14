@@ -8,6 +8,7 @@ Beverage::Beverage(string n, float p, int c, int v, float a) : Item(n,p,c)
 {
 	abv = a;
 	volume = v;
+	id = 3;
 }
 
 string Beverage::ToString()
