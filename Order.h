@@ -9,11 +9,12 @@
 class Order : ItemList
 {
 public:
-	float calculateTotal();
-
 	// TODO consider having another thing that deals with all printing.
+	// Function that prints the receipt to a text file
 	void printReceipt();
-
+private:
+	float total;
+	void calculateTotal();
 };
 
 

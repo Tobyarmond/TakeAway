@@ -3,3 +3,15 @@
 //
 
 #include "Order.h"
+
+void Order::calculateTotal()
+{
+
+}
+
+void Order::printReceipt()
+{
+
+}
+
+

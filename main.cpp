@@ -30,8 +30,11 @@ using namespace std;
 
 // TODO
 // Fix decimal places with price float
+// Change access levels for member variables within classes.
 // Fix rounding error with string to float conversion
 // Fix ToString of child objects not being called.
+// Fix deal with objects created but not destroyed.
+// Create destructors
 // This is because the things stored in the vector become Item rather than the course they were instantiated as.
 // List has been used instead but this will cause problems when selecting the option from the menu instead items will have to be an array
 
@@ -47,12 +50,14 @@ int main()
 	//cout << mc.ToString() << endl;
 	//cout << b.ToString() << endl;
 
+	cout << menu.ToString();
 
 	//cout << typeid(menu.items).name() << endl;
-	for (auto i : menu.items){
-		cout << typeid(*i).name() << endl;
-		cout << i->ToString() << endl;
-	}
+	//for (auto i : menu.items){
+		//cout << typeid(*i).name() << endl;
+
+		//cout << i->ToString() << endl;
+	//}
 
 
 	// Assignment driver code

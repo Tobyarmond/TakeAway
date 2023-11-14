@@ -12,6 +12,7 @@
 
 Menu::Menu(string filePath)
 {
+	// Open the CSV file and read the lines into seperate strings and store within a vector
 	vector<string> lines;
 	ifstream reader(filePath);
 	// If file does not exist return out of function with error message
@@ -32,27 +33,27 @@ Menu::Menu(string filePath)
 
 	//Loop over all lines in lines vector and create corresponding objects
 	// foreach string s in lines
+
 	for(string s: lines){
 		// Split the line into separate strings for each variable
 		vector<string> line = Split(s, ',');
+
 		string course;
-		// TODO not sure if this is required
-		if (!line.empty()){
-			course = line[0];
-		}
+		//the char s[0] could also be used instead but for readability purposes line[0] is used instead.
+		course = line[0];
+		// Because the name is already a string it could simply be put into the constructor call but is not for readability
+		string name = line[1];
 		float price =  stof(line[2]);
 		int calories = stoi(line[3]);
-		// TODO could possibly change this to a pointer as information is already a string
-		string name = line[1];
 
 		// If the course is an appetiser
 		if (course == "a"){
 			bool shareable = false;
 			bool twoForOne = false;
-			if (line[3] == "y"){
+			if (line[4] == "y"){
 				shareable = true;
 			}
-			if (line[4] == "y"){
+			if (line[5] == "y"){
 				twoForOne = true;
 			}
 			Item* ap = new Appetiser(name,price,calories,shareable,twoForOne);
@@ -94,6 +95,22 @@ vector<string> Menu::Split(string str, char separator)
 		i++;
 	}
 	return storage;
+}
+
+// TODO need to add course separation functionality to this
+string Menu::ToString()
+{
+	int i = 1;
+	string response = "";
+	// if menu is not empty
+	if (!items.empty()){
+		for (Item* it : items){
+			response += to_string(i) + ".";
+			response += it->ToString() + "\n";
+			i++;
+		}
+	}
+	return response;
 }
 
 
