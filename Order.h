@@ -5,6 +5,7 @@
 #ifndef TAKEAWAY_ORDER_H
 #define TAKEAWAY_ORDER_H
 #include "ItemList.h"
+#include <map>
 
 class Order : ItemList
 {
@@ -14,9 +15,17 @@ public:
 	void PrintReceipt();
 	void AddItem(Item*, int);
 	void RemoveItem(Item*);
+	string ToString();
+	void SetTax(float);
+	void SetTip(float);
+
 private:
+	map<Item*, int> quantities;
 	float total;
+	float tip;
+	float tax;
 	void CalculateTotal();
+	void CountItems();
 };
 
 

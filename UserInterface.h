@@ -11,6 +11,7 @@ class UserInterface
 public:
  	void Introduction();
 	void Help();
+	void Help(const std::string&);
 };
 
 

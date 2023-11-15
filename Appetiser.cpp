@@ -24,6 +24,11 @@ string Appetiser::ToString()
 	return Item::ToString() + additions;
 }
 
+bool Appetiser::getTwoForOne()
+{
+	return twoForOne;
+}
+
 
 
 

@@ -17,8 +17,10 @@ public:
 	float getPrice();
 
 	virtual string ToString();
-
+	virtual bool getTwoForOne();
 	virtual  int getID();
+
+
 
 protected:
 	int calories;

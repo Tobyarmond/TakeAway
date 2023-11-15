@@ -96,40 +96,48 @@ int main()
 		}
 
 		string command = parameters[0];
-
-		if (command.compare("menu") == 0) {
-			cout << menu.ToString();
+		if (parameters[1] == "?"){
+			userInterface.Help(parameters[0]);
 		}
-		else if (command.compare("add") == 0)
-		{
-			int amount;
-			Item* choice = menu.GetItem(stoi(parameters[1])-1); // you need to instantiate this using the menu object!
-			cout << "How many " + choice->getName() + " would you like to add?" << endl;
-			// TODO add quantity implementation
+		else{
+			if (command.compare("menu") == 0) {
+				cout << menu.ToString();
+			}
+			else if (command.compare("add") == 0)
+			{
+				int amount;
+				// FIXME choosing 12 crashes
+				// FIXME typing add during qty prompt adds one more
+				// FIXME typing add with no argument causes a crash
+				Item* choice = menu.GetItem(stoi(parameters[1])-1); // you need to instantiate this using the menu object!
+				cout << "How many " + choice->getName() + " would you like to add?" << endl;
+				// TODO add quantity implementation
 
-			order.AddItem(choice, amount);
+				order.AddItem(choice, amount);
 
 
-			// You may also wish to implement the ability to add multiple items at once!
-			// e.g. add 1 5 9 
+				// You may also wish to implement the ability to add multiple items at once!
+				// e.g. add 1 5 9
+			}
+			else if (command.compare("remove") == 0)
+			{
+				// This is reused maybe make this common to add and remove somehow
+				Item* choice = menu.GetItem(stoi(parameters[1])-1);
+				order.RemoveItem(choice);
+			}
+			else if (command.compare("checkout") == 0)
+			{
+				cout << order.ToString();
+			}
+			else if (command.compare("help") == 0)
+			{
+				userInterface.Help();
+			}
+			else
+			{
+				cout << "Command not recognised. Type help for list of commands" << endl;
+			}
 		}
-		else if (command.compare("remove") == 0)
-		{
-
-		}
-		else if (command.compare("checkout") == 0)
-		{
-
-		}
-		else if (command.compare("help") == 0)
-		{
-			userInterface.Help();
-		}
-		else
-		{
-			cout << "Command not recognised. Type help for list of commands" << endl;
-		}
-
 		parameters.clear();
 
 	}
@@ -137,5 +145,6 @@ int main()
 	cout << "Press any key to quit...";
 	std::getchar();
 
+	// TODO all memory needs to be released
 	return 0;
 }

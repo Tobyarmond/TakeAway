@@ -43,3 +43,8 @@ int Item::getID()
 {
 	return id;
 }
+
+bool Item::getTwoForOne()
+{
+	return false;
+}
