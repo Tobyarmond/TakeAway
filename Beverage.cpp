@@ -3,6 +3,8 @@
 //
 
 #include "Beverage.h"
+#include <sstream>
+#include <iomanip>
 
 Beverage::Beverage(string n, float p, int c, int v, float a) : Item(n,p,c)
 {
@@ -13,9 +15,12 @@ Beverage::Beverage(string n, float p, int c, int v, float a) : Item(n,p,c)
 
 string Beverage::ToString()
 {
+	stringstream stream;
+	stream << fixed << setprecision(1) << abv;
+	string s = stream.str();
 	string additions = "\t(" + to_string(volume) + "ml";
 	if (abv > 0){
-		additions += ",\t" + to_string(abv) + "%";
+		additions += ",\t" + s + "%";
 	}
 	additions += ")";
 

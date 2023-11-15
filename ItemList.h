@@ -16,16 +16,20 @@ using namespace std;
 
 class ItemList
 {
+public:
+	Item* GetItem(int index);
 	// TODO Consider changing some things to private
 protected:
 	//std::vector<std::unique_ptr<Item>> items;
 	// I think this needs to be an array of pointers to make this work otherwise they narrow down to become Items
 	//vector<Item> items;
-
 	//list<Item*> items;
+
 	vector<Item*> items;
 
 	virtual string ToString();
+	void SortItemsByID();
+
 
 
 };

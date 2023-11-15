@@ -73,6 +73,9 @@ Menu::Menu(string filePath)
 			items.push_back(bp);
 		}
 	}
+	// Sorts the items to ensure that appetisers are listed before mains etc.
+	// This aids in the menus by enuring that certain food types come first.
+	SortItemsByID();
 }
 
 // TODO split this into a different class of tools or similar
@@ -101,39 +104,33 @@ vector<string> Menu::Split(string str, char separator)
 string Menu::ToString()
 {
 	int i = 1;
-	vector<Item*> starters;
-	vector<Item*> mains;
-	vector<Item*> drinks;
-	string separator = "----------";
+	int currentID = 0;
+	const string separator = "----------";
 	string response = "";
 
 
 	// if menu is not empty
 	if (!items.empty()){
-		for (Item* it : items){
-			if(it->getID() == 1){
-				starters.push_back(it);
+		for (Item* it : items)
+		{
+			// Print the headers when new course is encountered
+			if(it->getID() > currentID){
+				currentID = it->getID();
+				switch (currentID)
+				{
+				case 1:
+					response += separator + "Appetisers" + separator + "\n";
+					break;
+				case 2:
+					response += separator + "Main Dishes" + separator + "\n";
+					break;
+				case 3:
+					response += separator + "Beverages" + separator + "\n";
+					break;
+				}
 			}
-			else if(it->getID() == 2){
-				mains.push_back(it);
-			}
-			else if(it->getID() == 3){
-				drinks.push_back(it);
-			}
-		}
-		response += separator + "Appetisers" + separator + "\n";
-		for(Item* ap : starters){
-			response += to_string(i) + "." + ap->ToString() +"\n";
-			i++;
-		}
-		response += separator + "Main Dishes" + separator + "\n";
-		for(Item* mc : mains){
-			response += to_string(i) + "." + mc->ToString() + "\n";
-			i++;
-		}
-		response += separator + "Beverages" + separator + "\n";
-		for(Item* dr : drinks){
-			response += to_string(i) + "." + dr->ToString() + "\n";
+			// Add items to the menu
+			response += to_string(i) + "." + it->ToString() + "\n";
 			i++;
 		}
 	}

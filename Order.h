@@ -11,10 +11,12 @@ class Order : ItemList
 public:
 	// TODO consider having another thing that deals with all printing.
 	// Function that prints the receipt to a text file
-	void printReceipt();
+	void PrintReceipt();
+	void AddItem(Item*, int);
+	void RemoveItem(Item*);
 private:
 	float total;
-	void calculateTotal();
+	void CalculateTotal();
 };
 
 
