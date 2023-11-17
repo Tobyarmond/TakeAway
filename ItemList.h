@@ -17,6 +17,7 @@ using namespace std;
 class ItemList
 {
 public:
+	int GetSize();
 	Item* GetItem(int index);
 	// TODO Consider changing some things to private
 protected:

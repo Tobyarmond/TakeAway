@@ -9,6 +9,8 @@
 
 void Order::CalculateTotal()
 {
+	// FIXME total is wrong and is generally 1 too low.
+	// TODO might need to have both 241 items in the offer.
 	// TODO consider adding tax calculation to this.
 	// Clear total before recalculating
 	total = 0;
@@ -27,9 +29,11 @@ void Order::PrintReceipt()
 	cout << "Receipt printed" << endl;
 }
 
-void Order::AddItem(Item* item, int qty = 1)
+void Order::AddItem(Item* item,int qty = 1)
 {
-	items.push_back(item);
+	for (int i = 0; i < qty; i++){
+		items.push_back(item);
+	}
 	SortItemsByID();
 }
 
@@ -64,7 +68,7 @@ string Order::ToString()
 			stringstream stream;
 			stream << fixed << setprecision(2) << qty.first->getPrice();
 			string s = stream.str();
-			response += to_string(qty.second) + qty.first->getName() + "\t\x9C" + s + "\n";
+			response += to_string(qty.second) + " " + qty.first->getName() + "\t\x9C" + s + "\n";
 		}
 		response += line;
 		response += "Total (ex. VAT) \x9C" + to_string(total - (total * tax)) + "\n";

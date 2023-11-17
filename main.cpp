@@ -43,30 +43,7 @@ using namespace std;
 
 int main()
 {
-	/*
-	Menu menu = Menu("menu.csv");
-	Appetiser a = Appetiser("aardvark", 32.0, 255, true, true);
-	MainCourse mc = MainCourse("Quavers", 16.5, 500);
-	Beverage b = Beverage("Beer", 5.2, 200, 568, 4.0);
-
-	//cout << a.ToString() << endl;
-	//cout << mc.ToString() << endl;
-	//cout << b.ToString() << endl;
-
-	cout << menu.ToString();
-	Order order = Order();
-	*/
-
-	//cout << typeid(menu.items).name() << endl;
-	//for (auto i : menu.items){
-		//cout << typeid(*i).name() << endl;
-
-		//cout << i->ToString() << endl;
-	//}
-
-
 	// Assignment driver code
-
 	string userCommand;
 	vector <string> parameters;
 
@@ -79,9 +56,14 @@ int main()
 	// Create a UserInterface object
 	UserInterface userInterface = UserInterface();
 
+	// Show introduction screen
 	userInterface.Introduction();
+
+
 	while (userCommand != "exit")
 	{
+		string command = "";
+		// I think this is hogging cin. Try using user command to get input if needed
 		getline(cin, userCommand);
 		char* cstr = new char[userCommand.length() + 1];
 		strcpy(cstr, userCommand.c_str());
@@ -93,51 +75,73 @@ int main()
 		{
 			parameters.push_back(token);
 			token = strtok(NULL, " ");
+			command = parameters[0];
 		}
 
-		string command = parameters[0];
-		if (parameters[1] == "?"){
-			userInterface.Help(parameters[0]);
+
+		if (!parameters.empty()){
+			if (parameters[1] == "?"){
+				userInterface.Help(parameters[0]);
+			}
+			else{
+				if (command.compare("menu") == 0) {
+					cout << menu.ToString();
+					parameters.clear();
+				}
+				else if (command.compare("add") == 0)
+				{
+
+					// FIXME typing add during qty prompt adds one more
+					// FIXME typing add with no argument causes a crash
+					if(parameters.size() > 1 ){
+						// FIXME this could not be able to be turned into an integer
+						int menuNumber = stoi(parameters[1]) - 1;
+						// If the number selected is not greater than the size of the menu or less than 1
+						if (menuNumber < menu.GetSize() && menuNumber > 0){
+							Item* choice = menu.GetItem(menuNumber);
+							if (parameters.size() == 3){
+								order.AddItem(choice, stoi(parameters[2]));
+							}
+							 // you need to instantiate this using the menu object!
+							else{
+								order.AddItem(choice,1);
+							}
+						}
+						else{
+							cout << "Please choose a number within the menu" << endl;
+						}
+
+					}
+					else{
+						cout << "Please enter a number corresponding to an item. For help enter ? after command" << endl;
+						// TODO check this is needed
+
+					}
+					parameters.clear();
+					// You may also wish to implement the ability to add multiple items at once!
+					// e.g. add 1 5 9
+				}
+				else if (command.compare("remove") == 0)
+				{
+					// This is reused maybe make this common to add and remove somehow
+					Item* choice = menu.GetItem(stoi(parameters[1])-1);
+					order.RemoveItem(choice);
+				}
+				else if (command.compare("checkout") == 0)
+				{
+					cout << order.ToString();
+				}
+				else if (command.compare("help") == 0)
+				{
+					userInterface.Help();
+				}
+				else
+				{
+					cout << "Command not recognised. Type help for list of commands" << endl;
+				}
+			}
 		}
-		else{
-			if (command.compare("menu") == 0) {
-				cout << menu.ToString();
-			}
-			else if (command.compare("add") == 0)
-			{
-				int amount;
-				// FIXME choosing 12 crashes
-				// FIXME typing add during qty prompt adds one more
-				// FIXME typing add with no argument causes a crash
-				Item* choice = menu.GetItem(stoi(parameters[1])-1); // you need to instantiate this using the menu object!
-				cout << "How many " + choice->getName() + " would you like to add?" << endl;
-				// TODO add quantity implementation
 
-				order.AddItem(choice, amount);
-
-
-				// You may also wish to implement the ability to add multiple items at once!
-				// e.g. add 1 5 9
-			}
-			else if (command.compare("remove") == 0)
-			{
-				// This is reused maybe make this common to add and remove somehow
-				Item* choice = menu.GetItem(stoi(parameters[1])-1);
-				order.RemoveItem(choice);
-			}
-			else if (command.compare("checkout") == 0)
-			{
-				cout << order.ToString();
-			}
-			else if (command.compare("help") == 0)
-			{
-				userInterface.Help();
-			}
-			else
-			{
-				cout << "Command not recognised. Type help for list of commands" << endl;
-			}
-		}
 		parameters.clear();
 
 	}

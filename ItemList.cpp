@@ -46,14 +46,12 @@ void ItemList::SortItemsByID()
 
 Item* ItemList::GetItem(int index)
 {
-	Item* result;
-	if(index < items.size()-1){
-		result = items[index];
-	}
-	else{
-		result = nullptr;
-	}
-	return result;
+	return items[index];
+}
+
+int ItemList::GetSize()
+{
+	return 	items.size();
 }
 
 
