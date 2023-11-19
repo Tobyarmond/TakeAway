@@ -108,7 +108,6 @@ string Menu::ToString()
 	const string separator = "----------";
 	string response = "";
 
-
 	// if menu is not empty
 	if (!items.empty()){
 		for (Item* it : items)
@@ -133,9 +132,10 @@ string Menu::ToString()
 			response += to_string(i) + "." + it->ToString() + "\n";
 			i++;
 		}
+		response += "All prices include taxes\n";
 	}
 	else{
-		response = "The menu was empty";
+		response = "The menu was empty\n";
 	}
 	return response;
 }

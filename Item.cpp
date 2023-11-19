@@ -23,6 +23,7 @@ string Item::ToString()
 	stream << fixed << setprecision(2) << price;
 	string s = stream.str();
 	// x9C is hex character for £
+	// FIXME This doesn't output to text files correctly.
 	return name + ":\t" + "\x9C" + s +  ",\t" + to_string(calories) + "cal";
 }
 

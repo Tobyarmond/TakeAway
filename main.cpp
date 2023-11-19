@@ -114,8 +114,6 @@ int main()
 					}
 					else{
 						cout << "Please enter a number corresponding to an item. For help enter ? after command" << endl;
-						// TODO check this is needed
-
 					}
 					parameters.clear();
 					// You may also wish to implement the ability to add multiple items at once!
@@ -130,10 +128,17 @@ int main()
 				else if (command.compare("checkout") == 0)
 				{
 					cout << order.ToString();
+					order.CompleteCheckout();
 				}
 				else if (command.compare("help") == 0)
 				{
 					userInterface.Help();
+				}
+				else if(command.compare("tax") == 0){
+					order.SetTax(stof(parameters[1]));
+				}
+				else if(command.compare("tip") == 0){
+					order.SetTip(stof(parameters[1]));
 				}
 				else
 				{
@@ -141,14 +146,11 @@ int main()
 				}
 			}
 		}
-
 		parameters.clear();
-
 	}
-
 	cout << "Press any key to quit...";
 	std::getchar();
-
 	// TODO all memory needs to be released
+
 	return 0;
 }

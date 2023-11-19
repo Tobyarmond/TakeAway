@@ -12,20 +12,22 @@ class Order : ItemList
 public:
 	// TODO consider having another thing that deals with all printing.
 	// Function that prints the receipt to a text file
-	void PrintReceipt();
 	void AddItem(Item*, int);
 	void RemoveItem(Item*);
 	string ToString();
 	void SetTax(float);
 	void SetTip(float);
+	void CompleteCheckout();
 
 private:
 	map<Item*, int> quantities;
 	float total;
 	float tip;
 	float tax;
+	void PrintReceipt();
 	void CalculateTotal();
 	void CountItems();
+
 };
 
 
